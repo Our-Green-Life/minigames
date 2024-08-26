@@ -4,11 +4,11 @@ canvas.width = 320;
 canvas.height = 480;
 
 let bird = {
-    x: 80,
+    x: 380,
     y: 380,
     width: 20,  
     height: 20,
-    gravity: 0.15,
+    gravity: 0.25,
     lift: -5,
     velocity: 1
 };
@@ -20,6 +20,7 @@ let countdown = 3; // Biến đếm ngược
 
 function startGame() {
     bird.y = 200;
+    bird.x = 50;
     bird.velocity = 0;
     pipes = [];
     score = 0;
@@ -52,14 +53,14 @@ function gameLoop() {
     pipes.forEach(pipe => {
         context.fillStyle = "#0f0";
         context.fillRect(pipe.x, 0, pipe.width, pipe.y);
-        context.fillRect(pipe.x, pipe.y + 100, pipe.width, canvas.height - pipe.y - 100);
-        pipe.x -= 2;
+        context.fillRect(pipe.x, pipe.y + 130, pipe.width, canvas.height - pipe.y - 100);
+        pipe.x -= 1;
 
         // Kiểm tra va chạm
         if (
             bird.x < pipe.x + pipe.width &&
             bird.x + bird.width > pipe.x &&
-            (bird.y < pipe.y || bird.y + bird.height > pipe.y + 100)
+            (bird.y < pipe.y || bird.y + bird.height > pipe.y + 130)
         ) {
             gameOver = true;
         }
